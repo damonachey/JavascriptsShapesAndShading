@@ -1,2 +1,0 @@
-# JavascriptsShapesAndShading
-Created with CodeSandbox
