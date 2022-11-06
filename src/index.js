@@ -8,8 +8,6 @@ import { Cube } from "./shapes/cube.js";
 import { Sphere } from "./shapes/sphere.js";
 import { Mobius } from "./shapes/mobius.js";
 
-import { Utilities } from "./utilities.js";
-import { Geometry } from "./geometry.js";
 import { Quaternion } from "./numerics/quaternion.js";
 import { Matrix4x4 } from "./numerics/matrix4x4.js";
 import { Vector3 } from "./numerics/vector3.js";
@@ -17,14 +15,14 @@ import { Vector3 } from "./numerics/vector3.js";
 function draw() {
   Canvas.clear("#444");
 
-  for (const shape of shapes) shape.draw();
+  shapes.forEach(shape => shape.draw());
 }
 
 function update(progress) {
   const π = Math.PI;
   const q = Quaternion.createFromYawPitchRoll(π / 400, π / 500, π / 600);
 
-  for (const shape of shapes) shape.transform(q);
+  shapes.forEach(shape => shape.transform(q));
 }
 
 Game.initialize("canvas");
@@ -67,9 +65,7 @@ window.onkeypress = e => {
 
       const q = Quaternion.createFromRotationMatrix(m);
 
-      for (const shape of shapes) {
-        shape.transform(q);
-      }
+      shapes.forEach(shape => shape.transform(q));
     }
 
     Game.draw();
@@ -118,7 +114,7 @@ function onmousemove(e) {
       0
     );
 
-    for (const shape of shapes) shape.transform(q);
+    shapes.forEach(shape => shape.transform(q));
 
     Game.draw();
   }
